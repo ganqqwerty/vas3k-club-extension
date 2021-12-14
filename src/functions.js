@@ -1,29 +1,31 @@
+import {getAssholes} from "./database";
+
 /**
  * @returns {string}
  */
-function getPageType() {
+export function getPageType() {
     return document.location.pathname
-                            .split('/')
-                            .filter(a=>a)
-                            .shift()
+        .split('/')
+        .filter(a=>a)
+        .shift()
 }
 
 /**
  * @returns {string}
  */
-function getWhoAmI() {
+export function getWhoAmI() {
     return document.querySelector(".menu-right>a.avatar")
-            .getAttribute("href")
-            .split('/')
-            .filter(a=>a)
-            .pop()
+        .getAttribute("href")
+        .split('/')
+        .filter(a=>a)
+        .pop()
 }
 
 /**
  * @param {string} pageType
  * @returns {boolean}
  */
-function isUserPageType(pageType) {
+export function isUserPageType(pageType) {
     return pageType === "user"
 }
 
@@ -38,7 +40,7 @@ function isUserAsshole(user) {
 /**
  * @returns {string}
  */
-function getUser() {
+export function getUser() {
     return document.location.pathname.split('/').filter((a)=>a).pop()
 }
 
@@ -46,7 +48,7 @@ function getUser() {
  * @param {string} pageType
  * @returns {boolean}
  */
-function isListPageType(pageType) {
+export function isListPageType(pageType) {
     return pageType === "all"
 }
 
@@ -54,20 +56,14 @@ function isListPageType(pageType) {
  * @param {string} pageType
  * @returns {boolean}
  */
-function isUserContentPageType(pageType) {
+export function isUserContentPageType(pageType) {
     const contentTypes = ['battle', "question", "post", "idea"]
     return contentTypes.includes(pageType)
 }
 
-/**
- * @returns {string[]}
- */
-function getAssholes() {
-    const assholes = localStorage.getItem("assholes") || ""
-    return assholes.split(",").filter(x=>x)
-}
 
-function hideBlacklistedPosts() {
+
+export function hideBlacklistedPosts() {
     const refs = [
         "/post/7789/",
         "/battle/2158/",
@@ -103,7 +99,7 @@ function hideBlacklistedPosts() {
     }
 }
 
-function hideVotesRatingsAvatars() {
+export function hideVotesRatingsAvatars() {
     const distractedElementsSelectors = [
         '.upvote',
         '.upvote-voted',
@@ -122,7 +118,7 @@ function hideVotesRatingsAvatars() {
     }
 }
 
-function addAssholeButton() {
+export function addAssholeButton() {
     const parser = new DOMParser();
     const assholeBtnStr = `<a class="profile-status clickable"><span class="profile-status-icon">🖕</span> <span class="profile-status-status">Добавить в мои мудаки</span></a>`
     const assholeBtn = parser.parseFromString(assholeBtnStr, 'text/html').querySelector("a");
@@ -139,7 +135,7 @@ function addAssholeButton() {
     }
 }
 
-function hideAssholePosts() {
+export function hideAssholePosts() {
     for (const asshole of getAssholes()) {
         for (const assholeHref of document.querySelectorAll(`[href="/user/${asshole}/"]`) ) {
             assholeHref
@@ -150,7 +146,7 @@ function hideAssholePosts() {
     }
 }
 
-function hideAssholeComments() {
+export function hideAssholeComments() {
     for (const asshole of getAssholes()) {
         const selector = `.comment-header-author-name[href="/user/${asshole}/"]`
         const nodesWithAsshole = document.querySelectorAll(selector)
@@ -165,7 +161,7 @@ function hideAssholeComments() {
     }
 }
 
-function addAssholesList() {
+export function addAssholesList() {
     const textArea  = document.createElement("textarea")
     textArea.style.width = "100%"
     textArea.value = localStorage.getItem("assholes") || ""
@@ -173,27 +169,3 @@ function addAssholesList() {
     document.querySelector('.profile-intro')
         .insertAdjacentElement('beforebegin', textArea)
 }
-
-///==============
-const pageType = getPageType()
-if (isUserPageType(pageType)) {
-    if (getUser() !== getWhoAmI()) {
-        addAssholeButton()
-    }
-    else {
-        addAssholesList()
-    }
-
-}
-
-if (!isListPageType(pageType)) {
-    hideBlacklistedPosts()
-    hideAssholePosts()
-}
-
-if (isUserContentPageType(pageType)) {
-    hideAssholeComments();
-}
-
-hideVotesRatingsAvatars()
-

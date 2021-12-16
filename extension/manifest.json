@@ -5,7 +5,8 @@
   "version": "2.0.0",
   "manifest_version": 3,
   "action": {
-    "default_title": "execute.js will run (watch the Chrome DevTools' console)"
+    "default_title": "Вастрик.Клуб",
+    "default_icon": "logo-128.png"
   },
   "content_scripts": [
     {
@@ -17,7 +18,7 @@
       ]
     },
     {
-      "run_at" : "document_idle",
+      "run_at" : "document_end",
       "js": ["after.js"],
       "matches": [
         "https://*/*",

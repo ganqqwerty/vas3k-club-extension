@@ -2,7 +2,7 @@
   "name": "vas3k-club-extension",
   "version": "1.0.0",
   "description": "club extension",
-  "main": "src/extension.js",
+  "main": "src/main.js",
   "scripts": {
     "build": "webpack"
   },

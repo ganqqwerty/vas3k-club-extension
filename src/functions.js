@@ -126,7 +126,7 @@ export function addAssholeButton() {
         const currentUser = getUser()
         const assholesArr = getAssholes()
         assholesArr.push(currentUser)
-        localStorage.setItem("assholes", assholesArr.join(","))
+        localStorage.setItem("assholes", assholesArr)
 
     })
     document.querySelector(".profile-statuses").appendChild(assholeBtn)

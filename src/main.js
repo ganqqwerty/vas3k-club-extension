@@ -27,5 +27,5 @@ if (isUserContentPageType(pageType)) {
     hideAssholeComments();
 }
 
-hideVotesRatingsAvatars()
+// hideVotesRatingsAvatars()
 

@@ -18,11 +18,10 @@
       ]
     },
     {
-      "run_at" : "document_end",
+      "run_at" : "document_idle",
       "js": ["after.js"],
       "matches": [
-        "https://*/*",
-        "http://*/*"
+        "https://vas3k.club*/*"
       ]
     }
   ],

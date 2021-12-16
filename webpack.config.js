@@ -6,6 +6,7 @@ module.exports = {
         filename: "after.js",
         path: path.resolve(__dirname, 'extension'),
     },
+    watch: true,
 
     mode: "production"
 

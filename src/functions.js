@@ -6,7 +6,7 @@ import {getAssholes} from "./database";
 export function getPageType() {
     return document.location.pathname
         .split('/')
-        .filter(a=>a)
+        .filter(a => a)
         .shift()
 }
 
@@ -17,7 +17,7 @@ export function getWhoAmI() {
     return document.querySelector(".menu-right>a.avatar")
         .getAttribute("href")
         .split('/')
-        .filter(a=>a)
+        .filter(a => a)
         .pop()
 }
 
@@ -41,7 +41,7 @@ function isUserAsshole(user) {
  * @returns {string}
  */
 export function getUser() {
-    return document.location.pathname.split('/').filter((a)=>a).pop()
+    return document.location.pathname.split('/').filter((a) => a).pop()
 }
 
 /**
@@ -60,7 +60,6 @@ export function isUserContentPageType(pageType) {
     const contentTypes = ['battle', "question", "post", "idea"]
     return contentTypes.includes(pageType)
 }
-
 
 
 export function hideBlacklistedPosts() {
@@ -130,14 +129,14 @@ export function addAssholeButton() {
 
     })
     document.querySelector(".profile-statuses").appendChild(assholeBtn)
-    if(isUserAsshole(getUser())) {
+    if (isUserAsshole(getUser())) {
         console.log("the user is an asshole!")
     }
 }
 
 export function hideAssholePosts() {
     for (const asshole of getAssholes()) {
-        for (const assholeHref of document.querySelectorAll(`[href="/user/${asshole}/"]`) ) {
+        for (const assholeHref of document.querySelectorAll(`[href="/user/${asshole}/"]`)) {
             assholeHref
                 .parentElement
                 .parentElement
@@ -161,11 +160,20 @@ export function hideAssholeComments() {
     }
 }
 
-export function addAssholesList() {
-    const textArea  = document.createElement("textarea")
+function createAssholesListEdit() {
+    const widget = document.createElement("div")
+    widget.setAttribute("class", "block")
+    const header = "<h2 class='profile-header'>Мои мудаки</h2>"
+    const textArea = document.createElement("textarea")
     textArea.style.width = "100%"
     textArea.value = localStorage.getItem("assholes") || ""
     textArea.addEventListener("input", () => localStorage.setItem("assholes", textArea.value))
+    widget.insertAdjacentHTML("afterbegin", header)
+    widget.appendChild(textArea)
+    return widget
+}
+
+export function addAssholesList() {
     document.querySelector('.profile-intro')
-        .insertAdjacentElement('beforebegin', textArea)
+        .insertAdjacentElement('beforebegin', createAssholesListEdit())
 }

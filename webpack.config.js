@@ -3,8 +3,10 @@ const path = require("path")
 module.exports = {
     entry: "./src/extension.js",
     output: {
-        filename: "dist.js",
-        path: path.resolve(__dirname, 'dist'),
-    }
+        filename: "after.js",
+        path: path.resolve(__dirname, 'extension'),
+    },
+
+    mode: "production"
 
 }

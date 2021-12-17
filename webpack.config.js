@@ -8,6 +8,8 @@ module.exports = {
     },
     watch: true,
 
-    mode: "production"
+    mode: "development",
+    devtool: 'inline-source-map',
+
 
 }

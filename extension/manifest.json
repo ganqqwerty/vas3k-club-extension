@@ -21,7 +21,7 @@
       "run_at" : "document_idle",
       "js": ["after.js"],
       "matches": [
-        "https://vas3k.club*/*"
+        "https://vas3k.club/*"
       ]
     }
   ],

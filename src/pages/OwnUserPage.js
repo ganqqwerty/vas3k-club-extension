@@ -1,5 +1,5 @@
 import {Page} from "./Page";
-import {AssholesStorage} from "./AssholesStorage";
+import {AssholesStorage} from "../AssholesStorage";
 
 export class OwnUserPage extends Page {
     constructor(pathname) {

@@ -1,9 +1,9 @@
 import {getUser} from "./functions";
-import {UserPage} from "./UserPage";
-import {OwnUserPage} from "./OwnUserPage";
-import {PostPage} from "./PostPage";
-import {Page} from "./Page";
-import {FeedPage} from "./FeedPage";
+import {UserPage} from "./pages/UserPage";
+import {OwnUserPage} from "./pages/OwnUserPage";
+import {PostPage} from "./pages/PostPage";
+import {Page} from "./pages/Page";
+import {FeedPage} from "./pages/FeedPage";
 
 export class PageFactory {
     constructor(pathname) {

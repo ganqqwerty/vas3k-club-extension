@@ -1,5 +1,5 @@
 import {Page} from "./Page";
-import {AssholesStorage} from "./AssholesStorage";
+import {AssholesStorage} from "../AssholesStorage";
 
 export class UserPage extends Page {
     constructor(url) {

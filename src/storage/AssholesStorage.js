@@ -10,7 +10,7 @@ export class AssholesStorage {
      * @returns {string[]}
      */
     static getAssholes() {
-        return AssholesStorage.getAssholesText.split(',') || [];
+        return AssholesStorage.getAssholesText().split(',') || [];
     }
 
     /**

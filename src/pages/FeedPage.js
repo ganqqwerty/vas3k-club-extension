@@ -1,6 +1,7 @@
 import {Page} from "./Page";
-import {AssholesStorage} from "../AssholesStorage";
+import {AssholesStorage} from "../storage/AssholesStorage";
 import {hideVotesRatingsAvatars} from "../functions";
+import {BlacklistStorage} from "../storage/BlacklistStorage";
 
 export class FeedPage extends Page {
     constructor(pathname) {
@@ -10,8 +11,29 @@ export class FeedPage extends Page {
     modifyContent() {
         this.hideBlacklistedPosts()
         this.hideAssholePosts()
-        hideVotesRatingsAvatars()
+        // hideVotesRatingsAvatars()
+        this.addBlacklistButton()
 
+    }
+
+    addBlacklistButton() {
+        const posts = document.querySelectorAll(".feed-post-footer")
+        posts.forEach(post => {
+            const pageId = post.querySelector("a.feed-post-comments")
+                .getAttribute("href")
+                .split("/")
+                .slice(1, -1)
+                .join("/")
+            const button = document.createElement("a")
+            button.innerText = "🙈"
+            button.setAttribute("title", "Слушайте, а ну его нахер!")
+            button.classList.add("feed-post-comments")
+            button.addEventListener("click", () => {
+                BlacklistStorage.addPage(pageId)
+                post.parentElement.remove()
+            })
+            post.appendChild(button)
+        })
     }
 
     hideAssholePosts() {
@@ -26,31 +48,7 @@ export class FeedPage extends Page {
     }
 
     hideBlacklistedPosts() {
-        const refs = [
-            "/post/7789/",
-            "/battle/2158/",
-            "/battle/1624/",
-            "/battle/8638/",
-            "/battle/7818/",
-            "/battle/7795/",
-            "/battle/7741/",
-            "/battle/7680/",
-            "/question/9109/",
-            "/question/11517/",
-            "/question/9129/",
-            "/question/9101/",
-            "/question/9582/",
-            "/question/7182/",
-            "/question/7808/",
-            "/question/9071/",
-            "/question/13019/",
-            "/question/11361/",
-            "/post/8036/",
-            "/post/11496/",
-            "/idea/6619/",
-            "/question/11938/"
-        ]
-
+        const refs = BlacklistStorage.getBlacklist()
         for (const ref of refs) {
             for (const topic of document.querySelectorAll(`a[href*="${ref}"]`)) {
                 topic

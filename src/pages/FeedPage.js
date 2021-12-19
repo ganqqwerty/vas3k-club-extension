@@ -1,6 +1,5 @@
 import {Page} from "./Page";
 import {AssholesStorage} from "../storage/AssholesStorage";
-import {hideVotesRatingsAvatars} from "../functions";
 import {BlacklistStorage} from "../storage/BlacklistStorage";
 
 export class FeedPage extends Page {

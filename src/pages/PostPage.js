@@ -8,6 +8,7 @@ export class PostPage extends Page {
 
     modifyContent() {
         this.hideAssholeComments()
+        this.movePostCommentForm()
     }
 
     hideAssholeComments() {
@@ -24,4 +25,12 @@ export class PostPage extends Page {
             }
         }
     }
+    movePostCommentForm() {
+        const postCommentForm = document.querySelector('#post-comments-form')
+        const commentsList = document.querySelector('.post-comments-list')
+        const parent = commentsList.parentElement
+        postCommentForm.remove()
+        parent.insertBefore(postCommentForm, commentsList)
+    }
+
 }

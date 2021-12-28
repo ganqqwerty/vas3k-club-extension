@@ -51,7 +51,7 @@ export class PageFactory {
      * @returns {boolean}
      */
     isUserContentPageType() {
-        const contentTypes = ['battle', "question", "post", "idea"]
+        const contentTypes = [ "post", "question", "link",  "idea", "battle", "event", "project", "guide", "thread"]
         return contentTypes.includes(this.pageType)
     }
 

@@ -2,7 +2,7 @@ import {createStorageIfNotExists} from "./Storage";
 
 const PROTECTED_COMMENTS_STORAGE_KEY = "protectedComments"
 
-createStorageIfNotExists(PROTECTED_COMMENTS_STORAGE_KEY, [])
+createStorageIfNotExists(PROTECTED_COMMENTS_STORAGE_KEY, {})
 
 export class ProtectedCommentsStorage {
     static getStorage() {
@@ -34,10 +34,6 @@ export class ProtectedCommentsStorage {
      * @param {string} commentText
      */
     static addComment(pageId, commentId, commentText) {
-
-        if (!this.getStorage()[pageId]) {
-            localStorage[pageId] = JSON.stringify({}, null, 2)
-        }
         const pageStorage = this.getStorage()[pageId] || {}
         pageStorage[commentId] = commentText
         this._writeStorage(pageId, pageStorage)

@@ -1,7 +1,7 @@
 import {createStorageIfNotExists} from "./Storage";
 
 const ASSHOLES_STORAGE_KEY = 'assholes';
-createStorageIfNotExists(ASSHOLES_STORAGE_KEY)
+createStorageIfNotExists(ASSHOLES_STORAGE_KEY, [])
 
 export class AssholesStorage {
 

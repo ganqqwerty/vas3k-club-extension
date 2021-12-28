@@ -10,14 +10,6 @@
   },
   "content_scripts": [
     {
-      "run_at" : "document_start",
-      "js": ["before.js"],
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ]
-    },
-    {
       "run_at" : "document_idle",
       "js": ["after.js"],
       "matches": [
@@ -25,11 +17,7 @@
       ]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "permissions": [
-    "tabs",
     "scripting"
   ],
   "host_permissions": [

@@ -1,4 +1,8 @@
+import {createStorageIfNotExists} from "./Storage";
+
 const PRIVATE_COMMENTS_KEY = 'private-comments';
+
+createStorageIfNotExists(PRIVATE_COMMENTS_KEY, {})
 
 export class PrivateCommentsStorage {
     /**

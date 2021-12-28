@@ -1,4 +1,9 @@
+import {createStorageIfNotExists} from "./Storage";
+
 const PROTECTED_COMMENTS_STORAGE_KEY = "protectedComments"
+
+createStorageIfNotExists(PROTECTED_COMMENTS_STORAGE_KEY, [])
+
 export class ProtectedCommentsStorage {
     static getStorage() {
         if (!localStorage.getItem(PROTECTED_COMMENTS_STORAGE_KEY)) {

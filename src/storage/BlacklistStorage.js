@@ -1,4 +1,8 @@
+import {createStorageIfNotExists} from "./Storage";
+
 const BLACKLIST_STORAGE_KEY = 'blacklist';
+
+createStorageIfNotExists(BLACKLIST_STORAGE_KEY, [])
 
 export class BlacklistStorage {
     static getBlacklistText() {

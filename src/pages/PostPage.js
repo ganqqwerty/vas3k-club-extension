@@ -11,6 +11,7 @@ export class PostPage extends Page {
         this.hideAssholeComments()
         this.movePostCommentForm()
         this.addProtectCommentButtons()
+        this.addProtectAllCommentButton()
         this.restoreComments()
     }
 
@@ -80,11 +81,21 @@ export class PostPage extends Page {
         }
     }
 
+    addProtectAllCommentButton() {
+        const button = this.createButton()
+        button.setAttribute("title", "Защитить все комментарии от удаления")
+        button.addEventListener('click', () => {
+            this.protectAllComments()
+        })
+        document.querySelector('.post-actions-line').appendChild(button)
+    }
+
     addProtectCommentButtons() {
         const replyElements = document.querySelectorAll('.comment-header-badges')
         console.log(replyElements)
         for (const replyElement of replyElements) {
             const button = this.createButton();
+            button.setAttribute("title", "Защитить коммент от удаления")
             const self = this
             button.addEventListener("click", function(evt) {
                 const commentId = this.parentElement.parentElement.parentElement.id
@@ -97,11 +108,9 @@ export class PostPage extends Page {
     }
 
     createButton() {
-        const button = document.createElement("a")
-        button.setAttribute("class", "protect-comment-button")
-        button.setAttribute("title", "Сохранить коммент")
+        const button = document.createElement("i")
+        button.setAttribute("class", "fas fa-cloud-download-alt")
         button.style.cursor = 'pointer';
-        button.innerText = "📥"
         return button;
     }
 

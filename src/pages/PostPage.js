@@ -56,9 +56,9 @@ export class PostPage extends Page {
     }
 
     protectAllComments() {
-        const comments = document.querySelectorAll('.comment')
+        const comments = document.querySelectorAll(".text-body-type-comment")
         for (const comment of comments) {
-            this.protectComment(comment.id)
+            this.protectComment(comment.parentElement.parentElement.id)
         }
     }
 

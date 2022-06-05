@@ -34,6 +34,9 @@ export class PostPage extends Page {
         const commentsList = document.querySelector('.post-comments-list')
         const postCommentsRules = document.querySelector('.post-comments-rules')
         const parent = commentsList.parentElement
+        if (!parent || !postCommentForm || !commentsList || !postCommentsRules) {
+            return
+        }
         parent.insertBefore(postCommentForm, commentsList)
         parent.insertBefore(postCommentsRules, commentsList)
     }
@@ -77,7 +80,7 @@ export class PostPage extends Page {
         const commentId = deletedComment.parentElement.parentElement.parentElement.id
         const commentText = ProtectedCommentsStorage.getComment(this.pathname, commentId)
         if (commentText) {
-            deletedComment.innerHTML = commentText
+            deletedComment.innerHTML = commentText //TODO надо бы санитизировать это, а то ведь опасно
         }
     }
 
